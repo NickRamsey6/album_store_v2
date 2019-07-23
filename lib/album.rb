@@ -74,7 +74,6 @@ class Album
 
   def sold
     @@sold[self.id] = Album.new(self.name, self.id)
-    binding.pry
     @@albums.delete(self.id)
   end
 
