@@ -5,7 +5,7 @@ class Album
   attr_accessor :name
   @@albums = {}
   @@total_rows = 0
-
+  @@sold ={}
   def initialize(name, id)
     @name = name
     @id = id || @@total_rows += 1
@@ -69,5 +69,13 @@ class Album
   def self.sort
     sorted_albums = @@albums.sort_by { |id, album| album.name.downcase }
     @@albums = sorted_albums.to_h
+    @@albums.values
   end
+
+  def sold
+    @@sold[self.id] = Album.new(self.name, self.id)
+    binding.pry
+    @@albums.delete(self.id)
+  end
+
 end

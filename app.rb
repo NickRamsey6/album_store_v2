@@ -6,12 +6,12 @@ also_reload('lib/**/*.rb')
 also_reload('app.rb')
 
 get ('/') do
-  @albums = Album.sort.values
+  @albums = Album.sort
   erb(:albums)
 end
 
 get ('/albums') do
-  @albums = Album.sort.values
+  @albums = Album.sort
   # @albums = Album.search(params[:search])
   # erb(:albums)
   erb(:albums)
@@ -33,7 +33,7 @@ post ('/albums') do
   album = Album.new(name, nil)
   album.save()
 
-  @albums = Album.all # Adding this line will fix the error.
+  @albums = Album.sort # Adding this line will fix the error.
   erb(:albums)
 end
 
@@ -50,16 +50,25 @@ end
 patch ('/albums/:id') do
   @album = Album.find(params[:id].to_i())
   @album.update(params[:name])
-  @albums = Album.all
+  @albums = Album.sort
+  erb(:albums)
+end
+
+patch ('/albums/:id/sell') do
+  @album = Album.find(params[:id].to_i())
+  @album.sold
+  @albums = Album.sort
   erb(:albums)
 end
 
 delete ('/albums/:id') do
   @album = Album.find(params[:id].to_i())
   @album.delete()
-  @albums = Album.all
+  @albums = Album.sort
   erb(:albums)
 end
+
+
 
 # get ('/') do
 #   "This will be our home page. '/' is always the root route in a Sinatra application."

@@ -16,3 +16,9 @@
 
   <button type="submit">Delete album</button>
 </form>
+
+<form action="/albums/<%= @album.id() %>/sell" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <button type="submit">Sell album</button>
+</form>

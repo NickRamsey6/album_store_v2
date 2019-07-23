@@ -101,5 +101,4 @@ describe '#Album' do
       expect(id1).to(eq([album2]))
     end
   end
-
 end
