@@ -46,11 +46,9 @@ class Album
     # end
     #----------------------------------------------------
     x = 1
-    
     found_albums = []
     while (x <= @@albums.keys.length)
       if @@albums[x].name == name
-        found_id = @@albums[x].id.to_i
         found_albums.push (@@albums[x])
       end
       x += 1
@@ -65,5 +63,9 @@ class Album
 
   def delete
     @@albums.delete(self.id)
+  end
+
+  def self.sort(found_albums)
+
   end
 end

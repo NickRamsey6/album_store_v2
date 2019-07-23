@@ -5,14 +5,21 @@ require('pry')
 also_reload('lib/**/*.rb')
 
 get ('/') do
+
   @albums = Album.all
   erb(:albums)
 end
 
 get ('/albums') do
-  # @albums = Album.all
-  @albums = Album.search(params[:search])
+  @albums = Album.all
+  # @albums = Album.search(params[:search])
+  # erb(:albums)
   erb(:albums)
+end
+
+post ('/albums/search') do
+  @albums = Album.search(params[:search])
+  erb(:search_results)
 end
 
 get ('/albums/new') do

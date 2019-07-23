@@ -1,6 +1,6 @@
 <h1>All Sales Vinyl</h1>
 
-<h3>Available Records</h3>
+<h3>Search Results</h3>
 
 <% if @albums.any? %>
   <ul>
@@ -14,7 +14,7 @@
 
 <a href="/albums/new">Add a new album</a>
 
-<form action="/albums/search" method="post">
+<form action="/albums/search">
   <div class="form-group">
     <label for="search">Search</label>
     <input id="search" name="search" class="form-control" type="text">
