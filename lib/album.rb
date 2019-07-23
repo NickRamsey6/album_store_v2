@@ -21,6 +21,7 @@ class Album
 
   def self.all()
     @@albums.values()
+
   end
 
   def self.find(name)
@@ -65,7 +66,8 @@ class Album
     @@albums.delete(self.id)
   end
 
-  def self.sort(found_albums)
-
+  def self.sort
+    sorted_albums = @@albums.sort_by { |id, album| album.name.downcase }
+    @@albums = sorted_albums.to_h
   end
 end

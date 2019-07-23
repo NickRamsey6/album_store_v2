@@ -3,23 +3,25 @@ require('sinatra/reloader')
 require('./lib/album')
 require('pry')
 also_reload('lib/**/*.rb')
+also_reload('app.rb')
 
 get ('/') do
-
-  @albums = Album.all
+  @albums = Album.sort.values
   erb(:albums)
 end
 
 get ('/albums') do
-  @albums = Album.all
+  @albums = Album.sort.values
   # @albums = Album.search(params[:search])
   # erb(:albums)
   erb(:albums)
 end
 
 post ('/albums/search') do
+
   @albums = Album.search(params[:search])
   erb(:search_results)
+  binding.pry
 end
 
 get ('/albums/new') do
@@ -30,7 +32,8 @@ post ('/albums') do
   name = params[:album_name]
   album = Album.new(name, nil)
   album.save()
-  @albums = Album.all() # Adding this line will fix the error.
+
+  @albums = Album.all # Adding this line will fix the error.
   erb(:albums)
 end
 
