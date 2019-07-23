@@ -1,3 +1,5 @@
+require('pry')
+
 class Album
   attr_reader :id
   attr_accessor :name
@@ -29,8 +31,29 @@ class Album
     @@total_rows = 0
   end
 
+  # def self.search(name)
+  #   @@albums[]
+  # end
+
   def self.find(id)
     @@albums[id]
+  end
+
+  def self.search(name)
+    #code from a classmate as another solution-------------
+    # @@albums.select do |id, album|
+    #   album.name == name
+    # end
+    #----------------------------------------------------
+    x = 1
+    found = "nil"
+    while (x <= @@albums.keys.length)
+      if @@albums[x].name == name
+        found_id = @@albums[x].id.to_i
+      end
+      x += 1
+    end
+    @@albums[found_id].id.to_i
   end
 
   def update(name)
