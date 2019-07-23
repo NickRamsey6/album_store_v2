@@ -10,7 +10,8 @@ get ('/') do
 end
 
 get ('/albums') do
-  @albums = Album.all
+  # @albums = Album.all
+  @albums = Album.search(params[:search])
   erb(:albums)
 end
 

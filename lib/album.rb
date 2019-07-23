@@ -46,14 +46,16 @@ class Album
     # end
     #----------------------------------------------------
     x = 1
-    found = "nil"
+    
+    found_albums = []
     while (x <= @@albums.keys.length)
       if @@albums[x].name == name
         found_id = @@albums[x].id.to_i
+        found_albums.push (@@albums[x])
       end
       x += 1
     end
-    @@albums[found_id].id.to_i
+    found_albums
   end
 
   def update(name)
